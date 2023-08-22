@@ -1,0 +1,5 @@
+* project setup
+* move characters with event listeners
+* attacks
+* health bar interface
+* game timers and game over
