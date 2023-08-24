@@ -41,7 +41,7 @@ const player = new Fighter({
   },
   imageSrc: 'asset/img/Players1/Idle.png',
   framesMax: 10,
-  scale: 3.0,
+  scale: 3.1,
   offset: {
     x: 215,
     y: 157
@@ -180,6 +180,9 @@ function animate() {
   player.velocity.x = 0
   enemy.velocity.x = 0
 
+  
+
+  
   // player movement
 
   if (keys.a.pressed && player.lastKey === 'a') {
