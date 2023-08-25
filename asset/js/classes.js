@@ -51,7 +51,8 @@ class Sprite {
 	}
   }
   
-  class Fighter extends Sprite {
+  class Fighter extends Sprite 
+  {
 	constructor({
 	  position,
 	  velocity,
@@ -70,7 +71,7 @@ class Sprite {
 		framesMax,
 		offset
 	  })
-  
+
 	  this.velocity = velocity
 	  this.width = 50
 	  this.height = 150
@@ -102,6 +103,43 @@ class Sprite {
 	update() {
 	  this.draw()
 	  if (!this.dead) this.animateFrames()
+	  // Memastikan pemain dan musuh tidak keluar dari batas dunia
+	  const rightWall = canvas.width - this.width
+
+	  // Memastikan pemain tidak keluar dari batas dunia
+	  if (this.position.x < 0) {
+		this.position.x = 0;
+	  } else if (this.position.x > rightWall) {
+		this.position.x = rightWall;
+	  }
+	  
+	  const groundLevel = canvas.height - 96;
+
+      // Memastikan pemain tidak melompat di atas batas dunia
+	 if (this.position.y < groundLevel - this.height * this.scale) {
+		this.velocity.y = 0; // Menghentikan pergerakan vertikal saat mencapai groundLevel
+		this.position.y = groundLevel - this.height * this.scale;
+	 }
+
+		// if (this.position.x > 0) {
+		// 	this.position.x = 0;
+		// } else if (this.position.x + this.width * -1 > canvas.width) {
+		// 	this.position.x = canvas.width - this.width;
+		// }
+
+		// // if (this.position.y + this.height * this.scale > canvas.height - 96) {
+		// 	this.velocity.y = 0;
+		// 	this.position.y = canvas.height - 96 - this.height * this.scale;
+		// }
+	  // Lompat 1xd
+	  if (this.position.y >= groundLevel - this.height * this.scale) {
+		// Jika pemain mendarat, set playerJumped menjadi false
+		playerJumped = false;
+	}
+	 if (this.position.y >= groundLevel - this.height * this.scale) {
+		// Jika musuh mendarat, set enemyJumped menjadi false
+		enemyJumped = false;
+	 }
   
 	  // attack boxes biar tau dia nyerang atau gak
 	  this.attackBox.position.x = this.position.x + this.attackBox.offset.x
@@ -121,10 +159,20 @@ class Sprite {
 	attack() {
 	  this.switchSprite('attack1')
 	  this.isAttacking = true
+	  // saat pedang akan keluar sound
+	  punchSound.play();
 	}
   
+	attack2() {
+		this.switchSprite('attack2');
+		this.isAttacking = true
+	
+		// Putar suara serangan kedua
+		attack2Sound.play();
+	  }
+	  
 	takeHit() {
-	  this.health -= 20
+	  this.health -= 2
   
 	  if (this.health <= 0) {
 		this.switchSprite('death')
@@ -144,7 +192,13 @@ class Sprite {
 		this.framesCurrent < this.sprites.attack1.framesMax - 1
 	  )
 		return
-  
+
+	//   if (
+	//   	this.image === this.sprites.attack.image &&
+	// 	this.framesCurrent < this.sprites.attack2.framesMax - 1
+	//    )
+	// 	return
+	
 	  // tiban img kalau player saling tabrakan
 	  if (
 		this.image === this.sprites.takeHit.image &&
@@ -190,6 +244,14 @@ class Sprite {
 			this.framesCurrent = 0
 		  }
 		  break
+		
+		case 'attack2':
+		  if (this.image !== this.sprites.attack2.image) {
+			this.image = this.sprites.attack2.image
+			this.framesMax = this.sprites.attack2.framesMax
+			this.framesCurrent = 0
+		  }
+		  break
   
 		case 'takeHit':
 		  if (this.image !== this.sprites.takeHit.image) {
@@ -210,6 +272,3 @@ class Sprite {
 	}
   }
   
-let audio=new Audio('asset/sound/main.mp3')
-audio.loop=true;
-audio.play()

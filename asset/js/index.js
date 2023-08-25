@@ -6,7 +6,17 @@ canvas.height = 576
 
 c.fillRect(0, 0, canvas.width, canvas.height)
 
+
+// let audio=new Audio('../sound/main.mp3')
+// audio.loop=true;
+// audio.play()
 const gravity = 0.9 //update
+
+let playerJumped = false;
+let enemyJumped = false;
+
+const punchSound = new Audio('asset/sound/hit.wav');
+const attack2Sound = new Audio('asset/sound/hit.wav');
 
 const background = new Sprite({
   position: {
@@ -39,40 +49,44 @@ const player = new Fighter({
     x: 0,
     y: 0
   },
-  imageSrc: 'asset/img/Players1/Idle.png',
-  framesMax: 10,
-  scale: 3.1,
+  imageSrc: 'asset/img/samuraiMack/Idle.png',
+  framesMax: 8,
+  scale: 2.5,
   offset: {
     x: 215,
     y: 157
   },
   sprites: {
     idle: {
-      imageSrc: 'asset/img/Players1/Idle.png',
-      framesMax: 10 //poto per frame
+      imageSrc: 'asset/img/samuraiMack/Idle.png',
+      framesMax: 8 //poto per frame
     },
     run: {
-      imageSrc: 'asset/img/Players1/Run.png',
+      imageSrc: 'asset/img/samuraiMack/Run.png',
       framesMax: 8
     },
     jump: {
-      imageSrc: 'asset/img/Players1/Jump.png',
+      imageSrc: 'asset/img/samuraiMack/Jump.png',
       framesMax: 3
     },
     fall: {
-      imageSrc: 'asset/img/Players1/Fall.png',
+      imageSrc: 'asset/img/samuraiMack/Fall.png',
       framesMax: 3
     },
     attack1: {
-      imageSrc: 'asset/img/Players1/Attack1.png',
-      framesMax: 7
+      imageSrc: 'asset/img/samuraiMack/Attack1.png',
+      framesMax: 6
+    },
+    attack2: {
+      imageSrc: 'asset/img/samuraiMack/Attack2.png',
+      framesMax: 6
     },
     takeHit: {
-      imageSrc: 'asset/img/Players1/Take hit.png',
-      framesMax: 3
+      imageSrc: 'asset/img/samuraiMack/Take hit.png',
+      framesMax: 4
     },
     death: {
-      imageSrc: 'asset/img/Players1/Death.png',
+      imageSrc: 'asset/img/samuraiMack/Death.png',
       framesMax: 7
     }
   },
@@ -283,14 +297,48 @@ window.addEventListener('keydown', (event) => {
         keys.a.pressed = true
         player.lastKey = 'a'
         break
-      case 'w':
-        player.velocity.y = -20
-        break
+      // case 'w':
+      //   player.velocity.y = -20
+      //   break
       case ' ':
         player.attack()
         break
+      case 'q':
+        player.attack2();
+        break;
     }
   }
+
+  // Event listener untuk tombol lompat pemain
+window.addEventListener('keydown', (event) => {
+  if (!player.dead) {
+    switch (event.key) {
+      case 'w':
+        if (!playerJumped) {
+          player.velocity.y = -20;
+          playerJumped = true; // Tandai bahwa pemain sudah melompat
+        }
+        break;
+      // ... kode lainnya ...
+    }
+  }
+});
+
+// Event listener untuk tombol lompat musuh
+window.addEventListener('keydown', (event) => {
+  if (!enemy.dead) {
+    switch (event.key) {
+      case 'ArrowUp':
+        if (!enemyJumped) {
+          enemy.velocity.y = -20;
+          enemyJumped = true; // Tandai bahwa musuh sudah melompat
+        }
+        break;
+      // ... kode lainnya ...
+    }
+  }
+});
+
 
   if (!enemy.dead) {
     switch (event.key) {
@@ -307,7 +355,7 @@ window.addEventListener('keydown', (event) => {
         break
       case 'ArrowDown':
         enemy.attack()
-
+        attack2Sound.play();
         break
     }
   }
@@ -334,60 +382,5 @@ window.addEventListener('keyup', (event) => {
   }
 })
 
-// class Sprite {
-//     constructor({position, velocity}) {
-//         this.position = position
-//         this.velocity = velocity
-//         this.height = 150
-//     }
 
-//     draw() {
-//         c.fillStyle = 'red'
-//         c.fillRect(this.position.x, this.position.y, 50, this.height)
-//     }
-
-//     update() {
-//         this.draw()
-        
-//         this.position.y += this.velocity.y
-
-//         if (this.position.y + this.height + this.velocity.y >= canvas.height) {
-//             this.velocity.y = 0
-//         } else this.velocity.y += gravity
-//     }
-// }
-
-// const player = new Sprite ({
-//   position: {
-//     x: 0,
-//     y: 0
-//   },
-//   velocity: {
-//     x: 0,
-//     y: 0
-//   }
-// })
-
-// const enemy = new Sprite ({
-//     position: {
-//       x: 400,
-//       y: 100
-//     },
-//     velocity: {
-//       x: 0,
-//       y: 0
-//     }
-// })
-
-// console.log(player)
-
-// function animate() {
-//     window.requestAnimationFrame(animate)
-//     c.fillStyle = 'black'
-//     c.fillRect(0, 0, canvas.width, canvas.height)
-//     player.update()
-//     enemy.update()
-// }
-
-// animate()
 

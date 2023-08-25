@@ -12,5 +12,5 @@
 > [+] Movement player sama enemy
 > [+] Namabahin asset, sound, background dll
 > [+] Update progress bar timer untuk player dan enemy
-
-> [-] Yang belum selesai menurut saya masi banyak, kaya progress bar, player mengarah kanan kiri
+> [+] fix Music
+> [+] fix player keluar dari dunia
