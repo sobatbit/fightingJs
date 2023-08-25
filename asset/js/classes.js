@@ -192,6 +192,12 @@ class Sprite {
 		this.framesCurrent < this.sprites.attack1.framesMax - 1
 	  )
 		return
+
+	//   if (
+	//   	this.image === this.sprites.attack.image &&
+	// 	this.framesCurrent < this.sprites.attack2.framesMax - 1
+	//    )
+	// 	return
 	
 	  // tiban img kalau player saling tabrakan
 	  if (

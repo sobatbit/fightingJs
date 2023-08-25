@@ -355,7 +355,7 @@ window.addEventListener('keydown', (event) => {
         break
       case 'ArrowDown':
         enemy.attack()
-
+        attack2Sound.play();
         break
     }
   }
