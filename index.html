@@ -1,69 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="favicon.png" />
-    <!-- <link rel="stylesheet" href="asset/css/lobby.css" /> -->
     <title>BETA | Game JS Fight Samurai</title>
-  </head>
-  <body>
-    <canvas id="gameCanvas"></canvas>
-    <div class="progress-container">
-      <div class="progress enemy-progress">
-        <div class="progress-bar" id="playerHealth"></div>
-      </div>
-      <div class="timer" id="timer">60</div>
-      <div class="progress player-progress">
-        <div class="progress-bar" id="enemyHealth"></div>
-      </div>
-    </div>
-  </body>
-  <style>
-    .progress-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: absolute;
-      top: 0;
-      left: 8px;
-      right: 334px;
-      height: 30px;
-      padding: 10px;
-      background-color: rgba(0, 0, 0, 0.7);
-    }
-  
-    .progress {
-      flex: 1;
-      height: 100%;
-      margin: 0 10px;
-    }
-  
-    .progress-bar {
-      width: 100%;
-      height: 100%;
-      background-color: green;
-      transition: width 0.5s ease-in-out;
-    }
-  
-    .timer {
-      font-size: 20px;
-      color: white;
-    }
-  </style>
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"
-    integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer">
-  </script>
-  <script>let audio=new Audio('asset/sound/main.mp3')
-    audio.loop=true;
-    audio.play()</script>
-  <script src="asset/js/utils.js"></script>
-  <script src="asset/js/classes.js"></script>
-  <script src="asset/js/index.js"></script>
+</head>
+<body>
+    <script src="https://unpkg.com/kaboom@3000.0.0-beta.2/dist/kaboom.js"></script>
+    <script src="./asset/js/main.js"></script>
+    <script>
+        let audio=new Audio('asset/sound/main.mp3')
+        audio.loop=true;
+        audio.play();
+    </script>
+</body>
 </html>
-
-
