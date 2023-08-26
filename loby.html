@@ -16,12 +16,12 @@
 <body>
     <div class="lobby">
         <div>
-            <img src="asset/lobby/logo.png" class="logo" />
+            <img src="asset/background/lobby/logo.png" class="logo" />
         </div>
     </div>
     <div class="button">
         <div>
-            <a href="index.html"><button>Start Game</button></a>
+            <a href="./index.html"><button>PLAY DEMO</button></a>
         </div>
     </div>
     <div class="table">
@@ -76,7 +76,11 @@
         </tbody>
       </table>
     </div>
-    <script src="sound.js"></script>
+    <script>
+      let audio=new Audio('asset/sound/lobby.mp3')
+      audio.loop=true;
+      audio.play();
+    </script>
 </body>
 
 </html>

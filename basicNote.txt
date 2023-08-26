@@ -2,15 +2,3 @@
 * move characters with event listeners
 * attacks
 * health bar interface
-* game timers and game over
-
-
-
-
-* New Update Diandra
-> [+] Lobby Screen (new)
-> [+] Movement player sama enemy
-> [+] Namabahin asset, sound, background dll
-> [+] Update progress bar timer untuk player dan enemy
-> [+] fix Music
-> [+] fix player keluar dari dunia
