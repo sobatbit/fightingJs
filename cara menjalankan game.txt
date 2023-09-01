@@ -1,0 +1,4 @@
+Cara menjalanlan Game :
+
+- Run Menggunakan Extension Live Server
+- Connect ke jaringan
